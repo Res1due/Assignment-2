@@ -8,6 +8,10 @@
 
 #include "Graphs/SVFG.h"
 #include "SVF-LLVM/SVFIRBuilder.h"
+#include <set>
+#include <stack>
+#include <utility>
+#include <vector>
 
 class CFGAnalysis
 {
@@ -18,6 +22,9 @@ public:
 
 protected:
     void recordPath(const std::vector<unsigned> &path);
+    using State = std::pair<unsigned, std::stack<unsigned>>;
+    void dfs(const SVF::ICFGNode *node, unsigned sink,
+             std::set<State> &visited, std::vector<unsigned> &path);
 
     std::stack<unsigned> callStack;
     std::set<unsigned> sources;

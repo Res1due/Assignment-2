@@ -1,11 +1,12 @@
 #!/bin/bash
+set -euo pipefail
 
 ARGS="$@"
 
-if [ -n "${SVF_DIR}" ] && [ -d "${SVF_DIR}/llvm-16.0.0.obj" ]; then
+if [ -n "${SVF_DIR:-}" ] && [ -d "${SVF_DIR}/llvm-16.0.0.obj" ]; then
   export LLVM_DIR="${SVF_DIR}/llvm-16.0.0.obj"
   echo "LLVM_DIR: $LLVM_DIR"
-elif [ -n "${LLVM_DIR}" ] && [ -d "${LLVM_DIR}" ]; then
+elif [ -n "${LLVM_DIR:-}" ] && [ -d "${LLVM_DIR}" ]; then
   echo "LLVM_DIR: $LLVM_DIR"
 else
   echo "LLVM_DIR not found!"
