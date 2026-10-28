@@ -1,0 +1,24 @@
+digraph "ICFG" {
+	label="ICFG";
+
+	Node0xbda7161a68e0 [shape=record,color=purple,label="{GlobalICFGNode0\nCopyStmt: [Var1 \<-- Var0]  \nConstNullPtrValVar ID: 0\n ptr null \{ constant data \}\nAddrStmt: [Var10 \<-- Var3]  \nConstIntValVar ID: 10\n i32 0 \{ constant data \}\nAddrStmt: [Var13 \<-- Var3]  \nConstIntValVar ID: 13\n i32 100 \{ constant data \}\nAddrStmt: [Var15 \<-- Var3]  \nConstIntValVar ID: 15\n i32 1 \{ constant data \}\nAddrStmt: [Var4 \<-- Var5]  \nFunValVar ID: 4\nmain}"];
+	Node0xbda7161a68e0 -> Node0xbda7161915c0[style=solid];
+	Node0xbda7161915c0 [shape=record,color=yellow,label="{FunEntryICFGNode1 \{fun: main\}}"];
+	Node0xbda7161915c0 -> Node0xbda71618a600[style=solid];
+	Node0xbda7161b8c40 [shape=record,color=green,label="{FunExitICFGNode2 \{fun: main\}\nPhiStmt: [Var6 \<-- ([Var10, ICFGNode8],)]  \nValVar ID: 17\n   ret i32 0 }"];
+	Node0xbda71618a600 [shape=record,color=black,label="{IntraICFGNode3 \{fun: main\}\nBranchStmt: [ Unconditional branch]\nSuccessor 0 ICFGNode4   \nValVar ID: 7\n   br label %while.cond }"];
+	Node0xbda71618a600 -> Node0xbda7161908e0[style=solid];
+	Node0xbda7161908e0 [shape=record,color=black,label="{IntraICFGNode4 \{fun: main\}\nPhiStmt: [Var9 \<-- ([Var10, ICFGNode3],[Var11, ICFGNode9],)]  \nValVar ID: 9\n   %i.0 = phi i32 [ 0, %entry ], [ %inc, %while.body ] }"];
+	Node0xbda7161908e0 -> Node0xbda7161e05a0[style=solid];
+	Node0xbda7161e05a0 [shape=record,color=black,label="{IntraICFGNode5 \{fun: main\}\nCmpStmt: [Var12 \<-- (Var9 predicate40 Var13)]  \nValVar ID: 12\n   %cmp = icmp slt i32 %i.0, 100 }"];
+	Node0xbda7161e05a0 -> Node0xbda7161df780[style=solid];
+	Node0xbda7161df780 [shape=record,color=black,label="{IntraICFGNode6 \{fun: main\}\nBranchStmt: [Condition Var12]\nSuccessor 0 ICFGNode7   Successor 1 ICFGNode8   \nValVar ID: 14\n   br i1 %cmp, label %while.body, label %while.end }"];
+	Node0xbda7161df780 -> Node0xbda7161a67a0[style=solid];
+	Node0xbda7161df780 -> Node0xbda71617d100[style=solid];
+	Node0xbda7161a67a0 [shape=record,color=black,label="{IntraICFGNode7 \{fun: main\}\nBinaryOPStmt: [Var11 \<-- (Var9 opcode13 Var15)]  \nValVar ID: 11\n   %inc = add nsw i32 %i.0, 1 }"];
+	Node0xbda7161a67a0 -> Node0xbda7161bc3b0[style=solid];
+	Node0xbda71617d100 [shape=record,color=black,label="{IntraICFGNode8 \{fun: main\}\n   ret i32 0 }"];
+	Node0xbda71617d100 -> Node0xbda7161b8c40[style=solid];
+	Node0xbda7161bc3b0 [shape=record,color=black,label="{IntraICFGNode9 \{fun: main\}\nBranchStmt: [ Unconditional branch]\nSuccessor 0 ICFGNode4   \nValVar ID: 16\n   br label %while.cond, !llvm.loop !6 }"];
+	Node0xbda7161bc3b0 -> Node0xbda7161908e0[style=solid];
+}
